@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class ResourceGetter {
-	private GameObject _resource = null;
+public class ResourceGetter<T> where T: Object {
+	private T _resource;
 
 	private string _resourcePath = null;
 
-	public GameObject Resource {
+	public T Resource {
 		get {
 			if(_resource == null) {
-				_resource = Resources.Load<GameObject>(_resourcePath);
+				_resource = Resources.Load<T>(_resourcePath);
 			}
 			return _resource;
 		}
