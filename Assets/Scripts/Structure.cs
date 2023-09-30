@@ -2,12 +2,17 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 public class Structure: MonoBehaviour {
-	private static ResourceGetter<GameObject> _horBeamPrefabGetter = new ResourceGetter<GameObject>("Prefabs/HorizontalBeam");
-	private static ResourceGetter<GameObject> _polePrefabGetter = new ResourceGetter<GameObject>("Prefabs/Pole");
+	private static ResourceGetter<GameObject> _horBeamPrefabGetter
+		= new ResourceGetter<GameObject>("Prefabs/HorizontalBeam");
+	private static ResourceGetter<GameObject> _polePrefabGetter
+		= new ResourceGetter<GameObject>("Prefabs/Pole");
 
-	private static ResourceGetter<Material> _blueGetter = new ResourceGetter<Material>("Materials/Blue");
-	private static ResourceGetter<Material> _greenGetter = new ResourceGetter<Material>("Materials/Green");
-	private static ResourceGetter<Material> _redGetter = new ResourceGetter<Material>("Materials/Red");
+	private static ResourceGetter<Material> _blueGetter
+		= new ResourceGetter<Material>("Materials/Blue");
+	private static ResourceGetter<Material> _greenGetter
+		= new ResourceGetter<Material>("Materials/Green");
+	private static ResourceGetter<Material> _redGetter
+		= new ResourceGetter<Material>("Materials/Red");
 
 	private const string NAME_HORIZONTAL_BEAM = "HorizontalBeam";
 	private const string NAME_LEFT_POLE = "LeftPole";
@@ -38,5 +43,20 @@ public class Structure: MonoBehaviour {
 		float polePositionY = poleHeight / 2;
 		rightPoleTransform.position = new Vector3(polePositionX, polePositionY, 0f);
 		_leftPole.transform.position = new Vector3(-polePositionX, polePositionY, 0f);
+
+		SetMaterial(_horizontalBeam, _blueGetter.Resource);
+		SetMaterial(_leftPole, _redGetter.Resource);
+		SetMaterial(_rightPole, _greenGetter.Resource);
+	}
+
+	private static bool SetMaterial(GameObject go, Material aMaterial) {
+		Renderer renderer = go.GetComponent<Renderer>();
+
+		if(renderer == null) {
+			return false;
+		}
+
+		renderer.material = aMaterial;
+		return true;
 	}
 }

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class ResourceGetter<T> where T: Object {
 	private T _resource;
-
 	private string _resourcePath = null;
 
 	public T Resource {
