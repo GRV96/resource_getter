@@ -49,14 +49,14 @@ public class Structure: MonoBehaviour {
 		SetMaterial(_rightPole, _greenGetter.Resource);
 	}
 
-	private static bool SetMaterial(GameObject go, Material aMaterial) {
+	private static bool SetMaterial(GameObject go, Material pMaterial) {
 		Renderer renderer = go.GetComponent<Renderer>();
 
 		if(renderer == null) {
 			return false;
 		}
 
-		renderer.material = aMaterial;
+		renderer.material = pMaterial;
 		return true;
 	}
 }
